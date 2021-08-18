@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: <%= process.env.BASE_URL %>/sitemap.xml

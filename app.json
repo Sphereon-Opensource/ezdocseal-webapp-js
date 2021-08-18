@@ -1,0 +1,9 @@
+{
+  "name": "19314-document-sign-sphereon",
+  "config": {
+    "NODE_ENV": "production",
+    "HOST": "0.0.0.0",
+    "SENTRY_DSN": "",
+    "GOOGLE_ANALYTICS_ID": "UA-000000-1"
+  }
+}
