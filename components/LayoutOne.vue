@@ -7,7 +7,7 @@
       <v-col
         cols="12"
         sm="6"
-        class="d-flex flex-column justify-center mb-4 mb-sm-0"
+        class="d-flex flex-column mb-4 mb-sm-0"
       >
         <div :style="{ margin: marginLeftSide }">
           <slot name="left" />
@@ -16,7 +16,7 @@
       <v-col
         cols="12"
         sm="6"
-        class="d-flex flex-column justify-center white"
+        class="d-flex flex-column white"
       >
         <div
           class="pa-sm-4 pa-md-8"

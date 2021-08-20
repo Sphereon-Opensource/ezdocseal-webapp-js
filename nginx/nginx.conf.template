@@ -1,0 +1,34 @@
+server {
+
+  listen 80;
+  server_name ${WEB_SERVER_NAME};
+  location / {
+    root /usr/share/nginx/html;
+    try_files ${DOLLAR}uri /index.html;
+  }
+
+  # For debugging
+#  location / {
+#    proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+#    proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+#    proxy_set_header X-NginX-Proxy true;
+#    proxy_pass http://192.168.1.200:3000;
+#    proxy_set_header Host ${DOLLAR}http_host;
+#    proxy_cache_bypass ${DOLLAR}http_upgrade;
+#    proxy_redirect off;
+#  }
+
+
+  location ${API_PROXY_PATH} {
+    rewrite ${API_PROXY_PATH}/(.*) /${DOLLAR}1  break;
+    proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+    proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass ${API_BASE_URL};
+    proxy_ssl_session_reuse off;
+    proxy_set_header Host ${DOLLAR}proxy_host;
+    proxy_ssl_server_name on;
+    proxy_cache_bypass ${DOLLAR}http_upgrade;
+    proxy_redirect off;
+  }
+}

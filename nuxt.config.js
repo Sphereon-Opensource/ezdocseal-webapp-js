@@ -23,27 +23,27 @@ export default {
   ** Configure environment variables
    */
   env: {
-    SITE_BASE_URL: process.env.VUE_APP_SITE_BASE_URL  || 'http://ubuntuaws',
-    API_BASE_URL: process.env.VUE_APP_PROXY_API_URL || 'http://ubuntuaws/proxy/ezdocseal',
-    API_KEY: process.env.VUE_APP_API_KEY || '6SOWwCvcz45hev63c1eni7RwRkKfj7Vlax1aZFsc',
+    SITE_BASE_URL: process.env.VUE_APP_SITE_BASE_URL,
+    API_KEY: process.env.VUE_APP_API_KEY,
+    API_PROXY_PATH: process.env.VUE_APP_API_PROXY_PATH,
     disableSign: true,
 
     disablePageHowTo: true,
     disablePageMoreInfo: true,
     disablePageContact: true,
 
-    main_title: process.env.MAIN_TITLE || 'EZ DocSeal',
+    main_title: process.env.MAIN_TITLE || 'PDF Sign and Seal API',
     main_text: process.env.MAIN_TEXT || 'This is a demo portal for signing & sealing your PDF documents.',
 
     main_card_sign_title: process.env.MAIN_CARD_SIGN_TITLE || 'Sign',
     main_card_sign_text: process.env.MAIN_CARD_SIGN_TEXT || 'The files you upload here are not being stored on any permanent storage device. When the signing process has completed successfully, its authenticity is guaranteed.',
 
-    sign_title: process.env.SIGN_TITLE || 'EZ DocSeal',
-    sign_text: process.env.SIGN_TEXT || 'Demo page for signing & sealing your PDF documents.',
-    sign_sub_title: process.env.SIGN_SUB_TITLE || ' ',
+    sign_title: process.env.SIGN_TITLE || 'Demo page for signing & sealing your PDF documents.',
+    sign_text: process.env.SIGN_TEXT || 'The files you upload here are not being stored on any permanent storage device. When the signing process has completed successfully, its authenticity is guaranteed. Please read our',
+    sign_sub_title: process.env.SIGN_SUB_TITLE || '',
     sign_sub_text: process.env.SIGN_SUB_TEXT || '',
     sign_card_title: process.env.SIGN_CARD_TITLE || 'Sign',
-    sign_card_text: process.env.SIGN_CARD_TEXT || 'The files you upload here are not being stored on any permanent storage device. When the signing process has completed successfully, its authenticity is guaranteed.',
+    sign_card_text: process.env.SIGN_CARD_TEXT || '',
 
     // theme: 'blockchange',
   },

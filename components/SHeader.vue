@@ -12,15 +12,28 @@
         <v-col
           cols="9"
           sm="6"
-          class="d-flex align-center py-0"
+          class="d-flex align-center white logo-padding"
         >
+          <a
+            href="https://www.sphereon.com"
+            target="_blank"
+            title="Sphereon.com"
+            class="logo"
+          >
+            <s-logo
+              :src="logo1"
+              :width="280"
+              :height="50"
+              alt="Sphereon.com"
+            />
+          </a>
           <nuxt-link
             to="/"
             title="Home"
             class="logo"
           >
             <s-logo
-              :src="logo"
+              :src="logo2"
               :width="330"
               :height="68"
               alt="Document Sign"
@@ -83,7 +96,11 @@
         return `layout-${this.$store.state.page.layout}`;
       },
 
-      logo() {
+      logo1() {
+        return '/sphereon-zwart.svg';
+      },
+
+      logo2() {
         return '/logo-light.svg';
       }
     },
@@ -102,7 +119,7 @@
 
     methods: {
       scroll() {
-        this.sticky = window.scrollY > this.height / 2;
+        //this.sticky = window.scrollY > this.height / 2;
 
         this.$store.commit('header/setSticky', this.sticky);
       },
@@ -134,12 +151,17 @@
     right: 0;
     left: 0;
     z-index: 200;
+    backround: white;
 
     transition: $transition;
     transition-property: background-color, box-shadow;
 
     .container {
       transition: all #{$transition};
+    }
+
+    .logo-padding {
+      padding: 10px;
     }
 
     .logo {

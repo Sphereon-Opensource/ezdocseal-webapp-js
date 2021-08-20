@@ -1,13 +1,14 @@
 const DefaultApi = require('./api/DefaultApi')
 const JsonSignRequest = require('./model/JsonSignRequest')
 const SignData = require('./model/SignData')
+
 //const Error = require('model/Error')
 
 export class SignPdf {
 
   constructor() {
     this.api = new DefaultApi.default()
-    this.api.apiClient.basePath = process.env.API_BASE_URL
+    this.api.apiClient.basePath = process.env.API_PROXY_PATH;
     const authentication = this.api.apiClient.authentications['api_key'];
     authentication.apiKey = process.env.API_KEY
   }
@@ -15,20 +16,20 @@ export class SignPdf {
   doSignPDF = async pdfSignRequest => {
     console.log(pdfSignRequest.description)
 
-    const jsonSignRequest = new JsonSignRequest.default(pdfSignRequest.signData, pdfSignRequest.file.substring(37));
-
-    // eslint-disable-next-line no-unused-vars
-    const callback = function (error, data, response) {
-      if (error) {
-        console.error(error);
-      } else {
-        var a = document.createElement("a");
-        a.href = "data:application/octet-stream;base64," + data.content;
-        a.download = "test.pdf";
-        a.click();
-      }
-    };
-    this.api.sign(jsonSignRequest, callback);
+    let base64Content = pdfSignRequest.file;
+    const startPos = base64Content.indexOf(',')
+    if (base64Content.startsWith("data:") && startPos > -1) {
+      base64Content = base64Content.substring(startPos + 1)
+    }
+    const jsonSignRequest = new JsonSignRequest.default(pdfSignRequest.signData, base64Content);
+    return new Promise((resolve, reject) => {
+      // eslint-disable-next-line no-unused-vars
+      this.api.sign(jsonSignRequest, (error, data, response) => {
+          if (error) return reject(error);
+          resolve(data);
+        }
+      );
+    })
   };
 
   createSignRequest = (fields, file) => {
@@ -56,6 +57,7 @@ export class PdfSignRequest {
     this.signData = signData;
     this.file = file;
   }
+
   name;
   file;
   signData

@@ -92,7 +92,6 @@
     @include breakpoint(sm-and-up) {
       margin-top: 70px;
     }
-
     .icon {
       position: relative;
 

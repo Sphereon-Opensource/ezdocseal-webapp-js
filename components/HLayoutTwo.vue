@@ -1,13 +1,13 @@
 <template>
   <v-container
     fluid
-    class="fill-height py-0"
+    class="py-0"
   >
     <v-row class="fill-height">
       <v-col
         cols="12"
         sm="6"
-        class="d-flex flex-column justify-center order-sm-1 mb-4 mb-sm-0"
+        class="d-flex flex-column order-sm-1 mb-4 mb-sm-0"
       >
         <div :style="{ margin: marginRightSide }">
           <slot name="right" />
@@ -16,7 +16,7 @@
       <v-col
         cols="12"
         sm="6"
-        class="d-flex flex-column justify-center white"
+        class="d-flex flex-column white"
       >
         <div
           class="pa-sm-4 pa-md-8"
@@ -31,7 +31,7 @@
 
 <script>
   export default {
-    name: 'LayoutTwo',
+    name: 'HLayoutTwo',
 
     computed: {
       marginLeftSide() {
@@ -48,7 +48,7 @@
     },
 
     mounted() {
-      this.$store.commit('page/setLayout', 'two')
+      this.$store.commit('page/setLayout', 'htwo')
     }
   }
 </script>

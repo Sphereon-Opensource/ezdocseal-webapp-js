@@ -38,9 +38,18 @@
 <script>
 import isEqual from 'lodash/isEqual';
 import {SignPdf} from "@/services/ezdocseal/signPdf";
+
 /*
   import {verifyCredential} from "@/services/verify";
 */
+
+function insertSignedBeforePdf(fileName) {
+  const dotPdfIndex = fileName.toLowerCase().lastIndexOf(".pdf")
+  if (dotPdfIndex > -1) {
+    fileName = fileName.substring(0, dotPdfIndex) + "_signed" + fileName.substring(dotPdfIndex);
+  }
+  return fileName;
+}
 
 export default {
   name: 'SForm',
@@ -109,7 +118,11 @@ export default {
 
         const signAction = await Promise.all(
           signRequests.map(async signRequest => {
-            return await signPDF.doSignPDF(signRequest);
+            const data = await signPDF.doSignPDF(signRequest);
+            var a = document.createElement("a");
+            a.href = "data:application/octet-stream;base64," + data.content;
+            a.download = insertSignedBeforePdf(signRequest.name);
+            a.click();
           })
         );
         this.$emit('submit', signAction);

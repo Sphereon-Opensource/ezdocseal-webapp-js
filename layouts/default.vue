@@ -67,6 +67,6 @@
 
 <style lang="scss" scoped>
   .theme--light.v-application {
-    background: --v-secondary_dark-base url('/blockchange/background.jpg') no-repeat center top / cover;
+    background: var(--v-secondary_dark-base) url('/background.jpg') no-repeat center top / cover;
   }
 </style>
