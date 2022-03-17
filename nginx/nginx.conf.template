@@ -30,5 +30,6 @@ server {
     proxy_ssl_server_name on;
     proxy_cache_bypass ${DOLLAR}http_upgrade;
     proxy_redirect off;
+    client_max_body_size 10M;
   }
 }
